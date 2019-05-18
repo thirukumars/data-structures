@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int e;
+    struct node *next;
+};struct node*L;
+
+void create();
+void insert();
+
+void create(){
+    L=(struct node*)malloc(sizeof(struct node));
+    L->next=NULL;
+    printf("the node created\n");
+}
+void insert(){
+    int x;
+    printf("Enter the x value");
+    scanf("%d",&x);
+    struct node *tmp;
+    struct node *p;
+    p=L;
+    tmp=(struct node*)malloc(sizeof(struct node));
+    tmp->e=x;
+    if(L->next==NULL){
+        tmp->next=L->next;
+        L->next=tmp;
+    }
+    else{
+        while(p->next!=NULL){
+            p=p->next;
+        }
+    tmp->next=p->next;
+    p->next=tmp;
+    }
+}
+void display(){
+    struct node *p;
+    p=L;
+        while(p->next!=NULL){
+            printf("%d\n",p->next->e);
+            p=p->next;
+        }   
+}
+
+
+int main()
+{
+    int ch;
+    do{
+        printf("enter the ch value\n");
+        scanf("%d",&ch);
+    switch(ch){
+        case 1:
+            create();
+        break;
+        case 2:
+            insert();
+        break;
+        case 3:
+            display();
+        break;
+    }
+    }while(ch<=3);
+    return 0;
+}
